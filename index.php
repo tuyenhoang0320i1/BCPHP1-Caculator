@@ -44,12 +44,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             break;
         case "divi":
             if ($secondoperand == 0) {
-                echo "Error";
+                check();
             } else {
                 echo $firstoperand / $secondoperand;
             }
             break;
 
+    }
+}
+function checkNumber($firstoperand, $secondoperand ) {
+    if($firstoperand == 0 || $secondoperand == 0) {
+        throw new Exception("The number is not valid!");
+    } else {
+        return true;
+    }
+}
+function check() {
+    try {
+        checkNumber(0, 0);
+        echo 'If you see this, the number is 0';
+
+    }
+    catch (Exception $e) {
+        echo 'Message: ' . $e->getMessage();
     }
 }
 ?>
